@@ -12,10 +12,12 @@ scalaVersion := "2.13.10"
 Compile / resourceDirectory := baseDirectory.value / "conf"
 
 val kamonVersion = "2.5.11"
+val nettyVersion = "4.1.86.Final"
 
 libraryDependencies += "io.lettuce" % "lettuce-core"                 % "6.2.2.RELEASE"
-libraryDependencies += "io.netty"   % "netty-transport-native-epoll" % "4.1.86.Final" classifier "linux-x86_64"
-libraryDependencies += "joda-time"  % "joda-time"                    % "2.12.2"
+libraryDependencies += "io.netty"   % "netty-transport-native-epoll" % nettyVersion classifier "linux-x86_64"
+libraryDependencies += "io.netty" % s"netty-transport-native-kqueue" % nettyVersion classifier s"osx-x86_64"
+libraryDependencies += "io.netty" % s"netty-transport-native-kqueue" % nettyVersion classifier s"osx-aarch_64"
 
 libraryDependencies += "org.lichess" %% "scalachess"           % "10.6.3"
 libraryDependencies += "io.kamon"    %% "kamon-core"           % kamonVersion
